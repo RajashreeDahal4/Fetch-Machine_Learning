@@ -35,7 +35,8 @@ This model should be able to encode input sentences into fixed-length embeddings
 Test your implementation with a few sample sentences and showcase the obtained embeddings. 
 Describe any choices you had to make regarding the model architecture outside 
 of the transformer backbone.
-## ANSWER: We have used pre-trained BERT model (bert-base-uncased) and its associated tokenizer. 
+## ANSWER: 
+We have used pre-trained BERT model (bert-base-uncased) and its associated tokenizer. 
 BERT is a widely used transformer-based model known for its effectiveness in 
 natural language understanding tasks.
 Regarding choices outside of transformer architecture: 
@@ -51,7 +52,8 @@ Expand the sentence transformer to handle a multi-task learning setting.
 Task A: Sentence Classification – Classify sentences into predefined classes (you can make these up).
 Task B: [Choose another relevant NLP task such as Named Entity Recognition, Sentiment Analysis, etc.] (you can make the labels up)
 Describe the changes made to the architecture to support multi-task learning.
-## Answer:  In our case, we considered the same dataset but used for different tasks, one is for classification, and another is for sentiment analysis.
+## Answer:  
+In our case, we considered the same dataset but used for different tasks, one is for classification, and another is for sentiment analysis.
 Task2: To expand the sentence transformer for multi-task learning, several modifications are made to the architecture and training loop. 
 Let's describe the changes made:
 A. Model Architecture Changes:
@@ -100,7 +102,8 @@ Implement layer-wise learning rates for the multi-task sentence transformer.
 Explain the rationale for the specific learning rates you've set for each layer.
 
 Describe the potential benefits of using layer-wise learning rates for training deep neural networks. Does the multi-task setting play into that?
-## Answer: Different learning rates are assigned to specific components of the multi-task sentence transformer model:
+## Answer: 
+Different learning rates are assigned to specific components of the multi-task sentence transformer model:
 Embeddings: Assigned a low learning rate (1e-5) to retain pre-trained knowledge.
 Task-Specific Layers: Higher learning rates (1e-3) allow quicker adaptation to specific tasks.
 Transformer Layer: Lower learning rate (1e-5) stabilizes training and prevents forgetting.
