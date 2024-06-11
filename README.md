@@ -35,7 +35,7 @@ This model should be able to encode input sentences into fixed-length embeddings
 Test your implementation with a few sample sentences and showcase the obtained embeddings. 
 Describe any choices you had to make regarding the model architecture outside 
 of the transformer backbone.
-ANSWER: We have used pre-trained BERT model (bert-base-uncased) and its associated tokenizer. 
+## ANSWER: We have used pre-trained BERT model (bert-base-uncased) and its associated tokenizer. 
 BERT is a widely used transformer-based model known for its effectiveness in 
 natural language understanding tasks.
 Regarding choices outside of transformer architecture: 
@@ -51,7 +51,7 @@ Expand the sentence transformer to handle a multi-task learning setting.
 Task A: Sentence Classification – Classify sentences into predefined classes (you can make these up).
 Task B: [Choose another relevant NLP task such as Named Entity Recognition, Sentiment Analysis, etc.] (you can make the labels up)
 Describe the changes made to the architecture to support multi-task learning.
-Answer:  In our case, we considered the same dataset but used for different tasks, one is for classification, and another is for sentiment analysis.
+## Answer:  In our case, we considered the same dataset but used for different tasks, one is for classification, and another is for sentiment analysis.
 Task2: To expand the sentence transformer for multi-task learning, several modifications are made to the architecture and training loop. 
 Let's describe the changes made:
 A. Model Architecture Changes:
@@ -69,7 +69,7 @@ Task-specific Output Handling:
 ### Task 3: Training Considerations
 
 Discuss the implications and advantages of each scenario and explain your rationale as to how the model should be trained given the following:
-# answer:
+## answer:
 #### Case 1: If the entire network should be frozen
 This means that model's parameters remain unchanged, meaning no further learning from the new data occurs.
 The output of the model is entirely dependent on the pre-trained weights. Suitable when the pre-trained model is already well-tuned for the new tasks or the new dataset is very small. The advantage is of fast inference as no backpropagation and weight updates are needed. This also prevents overfitting on small datasets since no new learning occurs. Such scenario should be rarely used in practice as the specific tasks (Classification, and sentiment analysis) likely requires some degree of adaptation to the new dataset. It is only suitable in the scenarios where computational resources are very limited, or when the pre-trained model is expected to generalize well without further tuning.
@@ -82,27 +82,25 @@ In our case, the transformer backbone (which is BERT) retains its pre-trained we
 In this case, one task-specific head is retained with its pre-trained weights, whereas the other task-specific head and the transformer backbone are trained. It allows for the model to specialize in the frozen task while adapting to the other task.
 It ensures that the frozen task-specific head maintains its performance while allowing flexibility for the other head to adapt. It provides a balance between retaining knowledge for one task and learning new information for the other. This scenario is useful if there is confidence that one of the task-specific heads is already well-tuned for its task, and only the other task or the backbone requires further adaptation. It is suitable when the two tasks are related, and transfer learning can help improve performance on the new task without degrading performance on the frozen task.
 
-Transfer Learning Approach
-Choice of a Pre-trained Model:
-
-Use a model like bert-base-uncased from the Huggingface Transformers library.
+## Transfer Learning Approach
+* Choice of a Pre-trained Model: Use a model like bert-base-uncased from the Huggingface Transformers library.
 This model is chosen because it has been pre-trained on a large corpus and captures a wide range of linguistic patterns.
 Layers to Freeze/Unfreeze:
 
-Freeze the transformer backbone initially: This retains the generalized language understanding captured during the pre-training phase. The backbone has been pre-trained on a large corpus and captures general language patterns, which are useful for a wide range of tasks. Freezing the backbone helps in retaining these patterns and prevents overfitting when the new dataset is relatively small.
+* Freeze the transformer backbone initially: This retains the generalized language understanding captured during the pre-training phase. The backbone has been pre-trained on a large corpus and captures general language patterns, which are useful for a wide range of tasks. Freezing the backbone helps in retaining these patterns and prevents overfitting when the new dataset is relatively small.
 
-Unfreeze and train the task-specific heads: These heads need to learn mappings from the generalized embeddings to the specific task outputs. These layers are responsible for the final task-specific predictions, so they need to adapt to the nuances of the new tasks.
+* Unfreeze and train the task-specific heads: These heads need to learn mappings from the generalized embeddings to the specific task outputs. These layers are responsible for the final task-specific predictions, so they need to adapt to the nuances of the new tasks.
 By training only the task-specific heads initially, we allow the model to specialize in these tasks without disrupting the generalized language understanding of the backbone.
 
 
-# Task 4: Layer-wise Learning Rate Implementation (BONUS)
+### Task 4: Layer-wise Learning Rate Implementation (BONUS)
 
 Implement layer-wise learning rates for the multi-task sentence transformer.
 
 Explain the rationale for the specific learning rates you've set for each layer.
 
 Describe the potential benefits of using layer-wise learning rates for training deep neural networks. Does the multi-task setting play into that?
-Answer: Different learning rates are assigned to specific components of the multi-task sentence transformer model:
+## Answer: Different learning rates are assigned to specific components of the multi-task sentence transformer model:
 Embeddings: Assigned a low learning rate (1e-5) to retain pre-trained knowledge.
 Task-Specific Layers: Higher learning rates (1e-3) allow quicker adaptation to specific tasks.
 Transformer Layer: Lower learning rate (1e-5) stabilizes training and prevents forgetting.
