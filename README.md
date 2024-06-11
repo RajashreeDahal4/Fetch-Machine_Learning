@@ -1,32 +1,18 @@
+## Fetch-Machine_Learning Take Home Assignment
 ### How to Run
 To run the data pipeline, follow these steps:
 
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/rajashreeDahal4/Fetch-THA.git
-cd Fetch-THA
+git clone https://github.com/rajashreeDahal4/Fetch-Machine_Learning.git
+cd Fetch-Machine_Learning
 ```
-
-You will need the following installed on your local machine
-1. docker -- docker [install guide](https://docs.docker.com/get-docker/)
-2. Psql - [install](https://www.postgresql.org/download/)
-3. python3
-
 Setup python virtual environmet
 ```bash
-python3 -m venv env
+python3 -m venv .venv
 ```
 
-Activate environment for Linux/macos
-```bash
-source env/bin/activate
-```
-
-Activate enviornment for Windows
-```
-env\Scripts\activate
-```
 
 Install python dependencies
 ```bash
@@ -36,14 +22,12 @@ pip install -r requirements.txt
 3. Run docker containers:
 ```bash
 docker compose up -d
+docker run app    
 ```
 4. Run main python program
 ```bash
 python3 app/main.py
 ```
-The main.py script contains the logic to  fetch, process, and store messages.
-
-
 
 ### Task1 Sentence Transformer Implementation
 Implement a sentence transformer model using any deep learning framework of your choice. 
